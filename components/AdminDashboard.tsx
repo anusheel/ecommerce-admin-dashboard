@@ -60,57 +60,55 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders }) => {
                 <td className="px-6 py-4 whitespace-nowrap">{order.price}</td>
               </tr>
             ))}
-            {isAdding && (
-              <tr className="hover:bg-gray-100">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <input
-                    type="text"
-                    value={newOrder.title}
-                    onChange={(e) =>
-                      setNewOrder({ ...newOrder, title: e.target.value })
-                    }
-                  />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <input
-                    type="text"
-                    value={newOrder.description}
-                    onChange={(e) =>
-                      setNewOrder({ ...newOrder, description: e.target.value })
-                    }
-                  />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <input
-                    type="date"
-                    value={newOrder.dateOfPurchase}
-                    onChange={(e) =>
-                      setNewOrder({
-                        ...newOrder,
-                        dateOfPurchase: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <input
-                    type="number"
-                    value={newOrder.price}
-                    onChange={(e) =>
-                      setNewOrder({ ...newOrder, price: Number(e.target.value) })
-                    }
-                  />
-                </td>
-                <td>
-                  <button
-                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={handleAddOrder}
-                  >
-                    Add
-                  </button>
-                </td>
-              </tr>
-            )}
+            <tr className={`hover:bg-gray-100 ${isAdding ? '' : 'hidden'}`}>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="text"
+                  value={newOrder.title}
+                  onChange={(e) =>
+                    setNewOrder({ ...newOrder, title: e.target.value })
+                  }
+                />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="text"
+                  value={newOrder.description}
+                  onChange={(e) =>
+                    setNewOrder({ ...newOrder, description: e.target.value })
+                  }
+                />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="date"
+                  value={newOrder.dateOfPurchase}
+                  onChange={(e) =>
+                    setNewOrder({
+                      ...newOrder,
+                      dateOfPurchase: e.target.value,
+                    })
+                  }
+                />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <input
+                  type="number"
+                  value={newOrder.price}
+                  onChange={(e) =>
+                    setNewOrder({ ...newOrder, price: Number(e.target.value) })
+                  }
+                />
+              </td>
+              <td>
+                <button
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleAddOrder}
+                >
+                  Add
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
