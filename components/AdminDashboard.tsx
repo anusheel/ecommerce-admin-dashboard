@@ -137,13 +137,18 @@ const AdminDashboard: React.FC = () => {
                 />
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <input
-                  type="text"
+                <select
                   value={newOrder.status}
                   onChange={(e) =>
                     setNewOrder({ ...newOrder, status: e.target.value })
                   }
-                />
+                >
+                  <option value="Completed">Completed</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Active">Active</option>
+                  <option value="Cancelled">Cancelled</option>
+                  <option value="Pending">Pending</option>
+                </select>
               </td>
               <td>
                 <button
