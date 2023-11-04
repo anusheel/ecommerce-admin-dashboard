@@ -18,7 +18,24 @@ export default function Home() {
       dateOfPurchase: '2023-01-02',
       price: 200
     },
-    // Add more orders as needed
+    {
+      title: 'Order 3',
+      description: 'This is order 3',
+      dateOfPurchase: '2023-01-03',
+      price: 300
+    },
+    {
+      title: 'Order 4',
+      description: 'This is order 4',
+      dateOfPurchase: '2023-01-04',
+      price: 400
+    },
+    {
+      title: 'Order 5',
+      description: 'This is order 5',
+      dateOfPurchase: '2023-01-05',
+      price: 500
+    },
   ]
 
   return (
