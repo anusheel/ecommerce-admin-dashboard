@@ -10,31 +10,36 @@ export default function Home() {
       title: 'Order 1',
       description: 'This is order 1',
       dateOfPurchase: '2023-01-01',
-      price: 100
+      price: 100,
+      status: 'Completed'
     },
     {
       title: 'Order 2',
       description: 'This is order 2',
       dateOfPurchase: '2023-01-02',
-      price: 200
+      price: 200,
+      status: 'Pending'
     },
     {
       title: 'Order 3',
       description: 'This is order 3',
       dateOfPurchase: '2023-01-03',
-      price: 300
+      price: 300,
+      status: 'Completed'
     },
     {
       title: 'Order 4',
       description: 'This is order 4',
       dateOfPurchase: '2023-01-04',
-      price: 400
+      price: 400,
+      status: 'Pending'
     },
     {
       title: 'Order 5',
       description: 'This is order 5',
       dateOfPurchase: '2023-01-05',
-      price: 500
+      price: 500,
+      status: 'Completed'
     },
   ]
 
