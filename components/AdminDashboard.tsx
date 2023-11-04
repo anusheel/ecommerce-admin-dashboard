@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface Order {
   title: string;
@@ -8,12 +8,8 @@ interface Order {
   status: string;
 }
 
-interface AdminDashboardProps {
-  orders: Order[];
-}
-
-const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders }) => {
-  const [orderList, setOrderList] = useState(orders);
+const AdminDashboard: React.FC = () => {
+  const [orderList, setOrderList] = useState<Order[]>([]);
   const [isAdding, setIsAdding] = useState(false);
   const [newOrder, setNewOrder] = useState<Order>({
     title: '',
@@ -23,8 +19,23 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders }) => {
     status: '',
   });
 
+  useEffect(() => {
+    fetch('/api/orders')
+      .then(response => response.json())
+      .then(data => setOrderList(data));
+  }, []);
+
   const handleAddOrder = () => {
-    setOrderList([...orderList, newOrder]);
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newOrder),
+    })
+      .then(response => response.json())
+      .then(data => setOrderList([...orderList, data]));
+
     setNewOrder({
       title: '',
       description: '',
@@ -33,6 +44,13 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders }) => {
       status: '',
     });
     setIsAdding(false);
+  };
+
+  const handleDeleteOrder = (title: string) => {
+    fetch(`/api/orders?title=${title}`, {
+      method: 'DELETE',
+    })
+      .then(() => setOrderList(orderList.filter(order => order.title !== title)));
   };
 
   return (
@@ -66,6 +84,14 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ orders }) => {
                   <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${order.status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                     {order.status}
                   </span>
+                </td>
+                <td>
+                  <button
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDeleteOrder(order.title)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
